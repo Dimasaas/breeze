@@ -1,4 +1,4 @@
-"""Linha de comando: `ventoinha-macbook` ou `python -m ventoinha_macbook`."""
+"""Linha de comando: `breeze` ou `python -m breeze`."""
 from __future__ import annotations
 
 import argparse
@@ -11,13 +11,13 @@ from .curva import ConfigInvalida, Configuracao, carregar
 from .daemon import Daemon, ErroFatal
 from .sysfs import Applesmc
 
-CONFIG_PADRAO = "/etc/ventoinha-macbook.json"
+CONFIG_PADRAO = "/etc/breeze.json"
 
 
 def _parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="ventoinha-macbook",
-        description="Controle de ventoinha para MacBook com Linux (applesmc).")
+        prog="breeze",
+        description="Breeze: controle de ventoinha para MacBook com Linux (applesmc).")
     p.add_argument("--config", default=CONFIG_PADRAO,
                    help="arquivo JSON da curva (padrao: %(default)s; se nao existir, usa a curva padrao)")
     p.add_argument("--raiz", default="/",

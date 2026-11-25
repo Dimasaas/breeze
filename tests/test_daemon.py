@@ -3,10 +3,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ventoinha_macbook.curva import Configuracao
-from ventoinha_macbook.daemon import Daemon, ErroFatal
-from ventoinha_macbook.simulador import MaquinaTermica, arvore_falsa, definir_temperatura
-from ventoinha_macbook.sysfs import Applesmc
+from breeze.curva import Configuracao
+from breeze.daemon import Daemon, ErroFatal
+from breeze.simulador import MaquinaTermica, arvore_falsa, definir_temperatura
+from breeze.sysfs import Applesmc
 
 CFG_1S = Configuracao(intervalo_s=1.0)
 

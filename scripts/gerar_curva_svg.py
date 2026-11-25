@@ -11,7 +11,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ))
 
-from ventoinha_macbook.curva import Configuracao, carregar  # noqa: E402
+from breeze.curva import Configuracao, carregar  # noqa: E402
 
 L, A = 760, 400
 ML, MR, MT, MB = 70, 30, 40, 55

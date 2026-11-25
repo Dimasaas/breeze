@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ventoinha_macbook.curva import ConfigInvalida, Configuracao, carregar
+from breeze.curva import ConfigInvalida, Configuracao, carregar
 
 
 class TestCurva(unittest.TestCase):

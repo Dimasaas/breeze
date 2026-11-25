@@ -1,7 +1,7 @@
 import unittest
 
-from ventoinha_macbook.controle import Controlador
-from ventoinha_macbook.curva import Configuracao
+from breeze.controle import Controlador
+from breeze.curva import Configuracao
 
 
 def novo(**kw):

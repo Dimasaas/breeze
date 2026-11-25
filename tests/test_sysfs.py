@@ -2,8 +2,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ventoinha_macbook.simulador import arvore_falsa, definir_temperatura
-from ventoinha_macbook.sysfs import Applesmc, ErroSysfs
+from breeze.simulador import arvore_falsa, definir_temperatura
+from breeze.sysfs import Applesmc, ErroSysfs
 
 
 class TestApplesmc(unittest.TestCase):

@@ -1,18 +1,20 @@
 <p align="center">
-  <img src="docs/banner.svg" alt="ventoinha-macbook: curva de temperatura, histerese e emergência a 88 °C" width="100%">
+  <img src="docs/banner.svg" alt="Breeze: curva de temperatura, histerese e emergência a 88 °C" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://github.com/Dimasaas/ventoinha-macbook/actions/workflows/ci.yml"><img src="https://github.com/Dimasaas/ventoinha-macbook/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/Dimasaas/breeze/actions/workflows/ci.yml"><img src="https://github.com/Dimasaas/breeze/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/python-3.10%2B-00E5FF?logo=python&logoColor=white" alt="Python 3.10+">
   <img src="https://img.shields.io/badge/depend%C3%AAncias-zero-B388FF" alt="Sem dependências">
   <img src="https://img.shields.io/badge/plataforma-Linux%20%C2%B7%20applesmc-1b3a8a" alt="Linux applesmc">
   <img src="https://img.shields.io/badge/licen%C3%A7a-PolyForm%20Noncommercial-7C4DFF" alt="Licença PolyForm Noncommercial">
 </p>
 
-# ventoinha-macbook
+# Breeze
 
-Um daemon de ventoinha para **MacBook rodando Linux**, pelo driver `applesmc`. Lê as temperaturas, aplica uma curva configurável com histerese e controla o rpm direto pelo sysfs. Python 3.10+, **só a biblioteca padrão**.
+**a ventoinha inteligente do MacBook que virou servidor**
+
+Breeze é um daemon de ventoinha para **MacBook rodando Linux**, pelo driver `applesmc`. Lê as temperaturas, aplica uma curva configurável com histerese e controla o rpm direto pelo sysfs. Python 3.10+, **só a biblioteca padrão**.
 
 ## Por que existe
 
@@ -77,27 +79,27 @@ Uma observação de hardware: em alguns modelos o `fan1_min` informado pelo driv
 Requisitos: MacBook com o módulo `applesmc` carregado (confira com `ls /sys/devices/platform/applesmc.768/`), Python 3.10+ e systemd.
 
 ```bash
-git clone https://github.com/Dimasaas/ventoinha-macbook.git
-cd ventoinha-macbook
+git clone https://github.com/Dimasaas/breeze.git
+cd breeze
 
 # 1. veja o que ele faria, sem escrever nada
-python3 -m ventoinha_macbook --simular --ciclos 5
+python3 -m breeze --simular --ciclos 5
 
 # 2. instale o serviço
 sudo ./instalar.sh
 
 # acompanhar
-journalctl -fu ventoinha-macbook
+journalctl -fu breeze
 ```
 
-O `instalar.sh` copia o pacote para `/opt/ventoinha-macbook`, instala `/etc/ventoinha-macbook.json` (sem sobrescrever uma configuração válida que já exista), instala a unit, desliga o `mbpfan` se ele estiver ativo e sobe o serviço. **Se o serviço não ficar ativo em 4 segundos, ele desfaz tudo e devolve a ventoinha ao automático.** Para remover: `sudo ./desinstalar.sh`.
+O `instalar.sh` copia o pacote para `/opt/breeze`, instala `/etc/breeze.json` (sem sobrescrever uma configuração válida que já exista), instala a unit, desliga o `mbpfan` se ele estiver ativo e sobe o serviço. **Se o serviço não ficar ativo em 4 segundos, ele desfaz tudo e devolve a ventoinha ao automático.** Para remover: `sudo ./desinstalar.sh`.
 
 ### Linha de comando
 
 ```text
-python3 -m ventoinha_macbook [--config ARQ] [--simular] [--ciclos N] [--raiz DIR]
-python3 -m ventoinha_macbook --validar ARQ     # confere um JSON e sai (0 = ok)
-python3 -m ventoinha_macbook --padrao          # imprime a configuração padrão
+python3 -m breeze [--config ARQ] [--simular] [--ciclos N] [--raiz DIR]
+python3 -m breeze --validar ARQ     # confere um JSON e sai (0 = ok)
+python3 -m breeze --padrao          # imprime a configuração padrão
 ```
 
 `--simular` lê os sensores reais, imprime a decisão e **não escreve em nada** (a classe de acesso é aberta em modo somente leitura). Exemplo de saída:
@@ -153,6 +155,6 @@ Uso livre para **estudo, pesquisa e projetos pessoais ou sem fins comerciais**, 
 A small, dependency-free Python daemon that controls the fan of an Apple MacBook running Linux through the `applesmc` sysfs interface. It maps CPU temperature to RPM with a JSON-configurable curve, adds hysteresis so the fan does not hunt, enforces a 2000 RPM floor, and jumps to full speed at 88 °C. If the sensor fails it also goes to full speed, and on SIGTERM it hands control back to the firmware (`fan1_manual = 0`). `--simular` prints decisions without writing anything. It ships with a hardened systemd unit, install/uninstall scripts and tests that run against a fake sysfs tree with a thermal simulator, so no MacBook is needed to develop on it. Licensed for noncommercial use (PolyForm Noncommercial 1.0.0).
 
 ```bash
-python3 -m ventoinha_macbook --simular --ciclos 5   # dry run
+python3 -m breeze --simular --ciclos 5   # dry run
 sudo ./instalar.sh                                  # install as a service
 ```

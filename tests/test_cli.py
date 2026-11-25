@@ -5,8 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ventoinha_macbook import cli
-from ventoinha_macbook.simulador import arvore_falsa, definir_temperatura
+from breeze import cli
+from breeze.simulador import arvore_falsa, definir_temperatura
 
 
 def rodar(*args):
@@ -30,7 +30,7 @@ class TestCli(unittest.TestCase):
         self.assertEqual(dados["emergencia_c"], 88.0)
 
     def test_validar_aceita_o_exemplo_do_repositorio(self):
-        exemplo = Path(__file__).resolve().parent.parent / "systemd" / "ventoinha-macbook.json"
+        exemplo = Path(__file__).resolve().parent.parent / "systemd" / "breeze.json"
         codigo, out, _ = rodar("--validar", str(exemplo))
         self.assertEqual(codigo, 0, out)
 

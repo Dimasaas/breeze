@@ -1,14 +1,14 @@
 [Unit]
-Description=Controle de ventoinha para MacBook (applesmc)
-Documentation=https://github.com/Dimasaas/ventoinha-macbook
+Description=Breeze, controle de ventoinha para MacBook (applesmc)
+Documentation=https://github.com/Dimasaas/breeze
 # so um programa manda na ventoinha: subir este derruba o mbpfan, se existir
 Conflicts=mbpfan.service
 After=sysinit.target
 
 [Service]
 Type=simple
-Environment=PYTHONPATH=/opt/ventoinha-macbook PYTHONDONTWRITEBYTECODE=1
-ExecStart=/usr/bin/python3 -u -m ventoinha_macbook --config /etc/ventoinha-macbook.json
+Environment=PYTHONPATH=/opt/breeze PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 -u -m breeze --config /etc/breeze.json
 Restart=always
 RestartSec=2
 KillSignal=SIGTERM

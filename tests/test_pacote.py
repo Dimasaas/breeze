@@ -1,11 +1,11 @@
 import unittest
 
-import ventoinha_macbook
+import breeze
 
 
 class TestPacote(unittest.TestCase):
     def test_versao_definida(self):
-        self.assertRegex(ventoinha_macbook.__version__, r"^\d+\.\d+\.\d+$")
+        self.assertRegex(breeze.__version__, r"^\d+\.\d+\.\d+$")
 
 
 if __name__ == "__main__":
