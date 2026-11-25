@@ -38,35 +38,35 @@ def gerar(cfg: Configuracao) -> str:
     o.append(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {L} {A}" width="{L}" height="{A}" '
              f'font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">')
     o.append("<title>Curva temperatura para rpm</title>")
-    o.append(f'<rect width="{L}" height="{A}" rx="12" fill="#14102b"/>')
+    o.append(f'<rect width="{L}" height="{A}" rx="12" fill="#120726"/>')
     for r in range(2000, 6501, 1000):
-        o.append(f'<line x1="{ML}" y1="{y(r):.1f}" x2="{L - MR}" y2="{y(r):.1f}" stroke="#ffffff" stroke-opacity="0.08"/>')
-        o.append(f'<text x="{ML - 8}" y="{y(r) + 4:.1f}" text-anchor="end" fill="#b9b3d6">{r}</text>')
+        o.append(f'<line x1="{ML}" y1="{y(r):.1f}" x2="{L - MR}" y2="{y(r):.1f}" stroke="#7C5CFF" stroke-opacity="0.08"/>')
+        o.append(f'<text x="{ML - 8}" y="{y(r) + 4:.1f}" text-anchor="end" fill="#C3A8E6">{r}</text>')
     for t in range(40, 96, 10):
-        o.append(f'<line x1="{x(t):.1f}" y1="{MT}" x2="{x(t):.1f}" y2="{A - MB}" stroke="#ffffff" stroke-opacity="0.08"/>')
-        o.append(f'<text x="{x(t):.1f}" y="{A - MB + 20}" text-anchor="middle" fill="#b9b3d6">{t} °C</text>')
+        o.append(f'<line x1="{x(t):.1f}" y1="{MT}" x2="{x(t):.1f}" y2="{A - MB}" stroke="#7C5CFF" stroke-opacity="0.08"/>')
+        o.append(f'<text x="{x(t):.1f}" y="{A - MB + 20}" text-anchor="middle" fill="#C3A8E6">{t} °C</text>')
     # faixa de emergencia
     o.append(f'<rect x="{x(cfg.emergencia_c):.1f}" y="{MT}" width="{x(T1) - x(cfg.emergencia_c):.1f}" '
-             f'height="{A - MT - MB}" fill="#ff5252" fill-opacity="0.14"/>')
+             f'height="{A - MT - MB}" fill="#FFB86B" fill-opacity="0.14"/>')
     o.append(f'<line x1="{x(cfg.emergencia_c):.1f}" y1="{MT}" x2="{x(cfg.emergencia_c):.1f}" y2="{A - MB}" '
-             f'stroke="#ff5252" stroke-dasharray="5 4"/>')
-    o.append(f'<text x="{x(cfg.emergencia_c) - 6:.1f}" y="{MT + 14}" text-anchor="end" fill="#ff8a80">emergência {cfg.emergencia_c:g} °C</text>')
+             f'stroke="#FFB86B" stroke-dasharray="5 4"/>')
+    o.append(f'<text x="{x(cfg.emergencia_c) - 6:.1f}" y="{MT + 14}" text-anchor="end" fill="#FFB86B">emergência {cfg.emergencia_c:g} °C</text>')
     # piso
     o.append(f'<line x1="{ML}" y1="{y(cfg.piso_rpm):.1f}" x2="{L - MR}" y2="{y(cfg.piso_rpm):.1f}" '
-             f'stroke="#B388FF" stroke-opacity="0.5" stroke-dasharray="2 4"/>')
-    o.append(f'<text x="{L - MR - 4}" y="{y(cfg.piso_rpm) - 6:.1f}" text-anchor="end" fill="#B388FF">piso {cfg.piso_rpm} rpm</text>')
+             f'stroke="#4D8BFF" stroke-opacity="0.7" stroke-dasharray="2 4"/>')
+    o.append(f'<text x="{L - MR - 4}" y="{y(cfg.piso_rpm) - 6:.1f}" text-anchor="end" fill="#4D8BFF">piso {cfg.piso_rpm} rpm</text>')
     # curvas
-    o.append(f'<polyline points="{desce}" fill="none" stroke="#B388FF" stroke-width="2" stroke-dasharray="6 4"/>')
-    o.append(f'<polyline points="{sobe}" fill="none" stroke="#00E5FF" stroke-width="3"/>')
+    o.append(f'<polyline points="{desce}" fill="none" stroke="#7C5CFF" stroke-width="2" stroke-dasharray="6 4"/>')
+    o.append(f'<polyline points="{sobe}" fill="none" stroke="#FF4FA3" stroke-width="3"/>')
     for t, r in cfg.curva:
-        o.append(f'<circle cx="{x(t):.1f}" cy="{y(r):.1f}" r="4" fill="#00E5FF"/>')
+        o.append(f'<circle cx="{x(t):.1f}" cy="{y(r):.1f}" r="4" fill="#FF4FA3"/>')
     # legenda
-    o.append(f'<line x1="{ML + 12}" y1="{MT - 18}" x2="{ML + 40}" y2="{MT - 18}" stroke="#00E5FF" stroke-width="3"/>')
-    o.append(f'<text x="{ML + 48}" y="{MT - 14}" fill="#e8e4ff">subindo</text>')
-    o.append(f'<line x1="{ML + 130}" y1="{MT - 18}" x2="{ML + 158}" y2="{MT - 18}" stroke="#B388FF" stroke-width="2" stroke-dasharray="6 4"/>')
-    o.append(f'<text x="{ML + 166}" y="{MT - 14}" fill="#e8e4ff">descendo (histerese {cfg.histerese_c:g} °C)</text>')
-    o.append(f'<text x="{(ML + L - MR) / 2:.0f}" y="{A - 10}" text-anchor="middle" fill="#b9b3d6">temperatura da CPU</text>')
-    o.append(f'<text x="16" y="{(MT + A - MB) / 2:.0f}" text-anchor="middle" fill="#b9b3d6" '
+    o.append(f'<line x1="{ML + 12}" y1="{MT - 18}" x2="{ML + 40}" y2="{MT - 18}" stroke="#FF4FA3" stroke-width="3"/>')
+    o.append(f'<text x="{ML + 48}" y="{MT - 14}" fill="#F5EEFF">subindo</text>')
+    o.append(f'<line x1="{ML + 130}" y1="{MT - 18}" x2="{ML + 158}" y2="{MT - 18}" stroke="#7C5CFF" stroke-width="2" stroke-dasharray="6 4"/>')
+    o.append(f'<text x="{ML + 166}" y="{MT - 14}" fill="#F5EEFF">descendo (histerese {cfg.histerese_c:g} °C)</text>')
+    o.append(f'<text x="{(ML + L - MR) / 2:.0f}" y="{A - 10}" text-anchor="middle" fill="#C3A8E6">temperatura da CPU</text>')
+    o.append(f'<text x="16" y="{(MT + A - MB) / 2:.0f}" text-anchor="middle" fill="#C3A8E6" '
              f'transform="rotate(-90 16 {(MT + A - MB) / 2:.0f})">rpm pedido</text>')
     o.append("</svg>")
     return "\n".join(o) + "\n"
