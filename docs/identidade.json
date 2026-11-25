@@ -1,0 +1,13 @@
+{
+  "nome": "breeze",
+  "paleta": {
+    "fundo": "#0C2D48",
+    "primaria": "#38BDF8",
+    "secundaria": "#F97316",
+    "texto": "#EAF6FF",
+    "acento": "#FACC15"
+  },
+  "fonte": "'Segoe UI', 'Helvetica Neue', system-ui, sans-serif",
+  "logo": "docs/logo.svg",
+  "conceito": "Fluxo de ar e termografia: uma ventoinha de cinco pás sopra o calor do MacBook-servidor, e o degradê azul-amarelo-laranja-vermelho só aparece onde há temperatura."
+}

@@ -4,10 +4,10 @@
 
 <p align="center">
   <a href="https://github.com/Dimasaas/breeze/actions/workflows/ci.yml"><img src="https://github.com/Dimasaas/breeze/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <img src="https://img.shields.io/badge/python-3.10%2B-4D8BFF?logo=python&logoColor=white" alt="Python 3.10+">
-  <img src="https://img.shields.io/badge/depend%C3%AAncias-zero-7C5CFF" alt="Sem dependências">
-  <img src="https://img.shields.io/badge/plataforma-Linux%20%C2%B7%20applesmc-2b0f52" alt="Linux applesmc">
-  <img src="https://img.shields.io/badge/licen%C3%A7a-PolyForm%20Noncommercial-FF4FA3" alt="Licença PolyForm Noncommercial">
+  <img src="https://img.shields.io/badge/python-3.10%2B-38BDF8?logo=python&logoColor=white" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/depend%C3%AAncias-zero-EAF6FF" alt="Sem dependências">
+  <img src="https://img.shields.io/badge/plataforma-Linux%20%C2%B7%20applesmc-0C2D48" alt="Linux applesmc">
+  <img src="https://img.shields.io/badge/licen%C3%A7a-PolyForm%20Noncommercial-F97316" alt="Licença PolyForm Noncommercial">
 </p>
 
 # Breeze
