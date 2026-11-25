@@ -8,13 +8,13 @@ version = "0.1.0"
 description = "Daemon de ventoinha para MacBook rodando Linux (applesmc), com curva configurável, histerese e proteção contra falhas."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = { text = "PolyForm-Noncommercial-1.0.0" }
 authors = [{ name = "João Victor Diamantino Cardoso" }]
 keywords = ["macbook", "linux", "fan", "applesmc", "systemd", "sysfs"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: POSIX :: Linux",
-    "License :: OSI Approved :: MIT License",
+    "License :: Other/Proprietary License",
 ]
 dependencies = []
 
