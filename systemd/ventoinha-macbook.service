@@ -1,0 +1,50 @@
+[Unit]
+Description=Controle de ventoinha para MacBook (applesmc)
+Documentation=https://github.com/Dimasaas/ventoinha-macbook
+# so um programa manda na ventoinha: subir este derruba o mbpfan, se existir
+Conflicts=mbpfan.service
+After=sysinit.target
+
+[Service]
+Type=simple
+Environment=PYTHONPATH=/opt/ventoinha-macbook PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 -u -m ventoinha_macbook --config /etc/ventoinha-macbook.json
+Restart=always
+RestartSec=2
+KillSignal=SIGTERM
+TimeoutStopSec=10
+# rede de seguranca: se o processo morrer a forca, o SMC volta a controlar sozinho
+ExecStopPost=/bin/sh -c 'echo 0 > /sys/devices/platform/applesmc.768/fan1_manual || true'
+
+# --- hardening -------------------------------------------------------------
+# O daemon so precisa escrever em dois arquivos do applesmc. Todo o resto do
+# sistema fica somente leitura ou invisivel.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/sys/devices/platform/applesmc.768
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+PrivateNetwork=yes
+ProtectProc=invisible
+ProcSubset=pid
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+CapabilityBoundingSet=
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+UMask=0077
+# ATENCAO: nao use ProtectKernelTunables=yes; ele deixa /sys somente leitura
+# e o daemon deixaria de conseguir escrever em fan1_output.
+
+[Install]
+WantedBy=multi-user.target
