@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ventoinha-macbook"
+version = "0.1.0"
+description = "Daemon de ventoinha para MacBook rodando Linux (applesmc), com curva configurável, histerese e proteção contra falhas."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "João Victor Diamantino Cardoso" }]
+keywords = ["macbook", "linux", "fan", "applesmc", "systemd", "sysfs"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: POSIX :: Linux",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = []
+
+[project.scripts]
+ventoinha-macbook = "ventoinha_macbook.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ventoinha_macbook*"]
